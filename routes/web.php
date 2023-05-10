@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\ProductDetailsController;
+use App\Http\Controllers\AdminUser;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,7 +51,7 @@ Route::get('/dashboard/new-orders', [DashboardController::class, 'newOder'])->na
 Route::get('/dashboard/email-newsletter', [EmailController::class, 'getAllEmails'])->name('admin.email-letter');
 //get from add user
 Route::get('/dashboard/user/adduser', function () {
-    return view('admin-addUser');
+    return view('Admin.admin-addUser');
 })->name('user.add');
 
 //get from edit user
