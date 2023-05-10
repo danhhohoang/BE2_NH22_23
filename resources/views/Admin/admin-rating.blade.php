@@ -1,4 +1,4 @@
-@extends('master-admin')
+@extends('Admin.master-admin')
 @section('content')
 <?php if(session('success')) { ?>
 <div class="alert alert-success">
