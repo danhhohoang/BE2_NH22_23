@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminRatingController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\ProductDetailsController;
+use App\Http\Controllers\AdminProtype;
 use App\Http\Controllers\AdminUser;
 /*
 |--------------------------------------------------------------------------
@@ -92,7 +93,7 @@ Route::post('/dashboard/protype/add', [AdminProtype::class, 'add'])->name('admin
 
 //get from add protype
 Route::get('/dashboard/protype/addprotype', function () {
-    return view('admin-addprotype');
+    return view('Admin.admin-addprotype');
 })->name('protype.add');
 
 //get from edit protype
@@ -112,3 +113,9 @@ Route::delete('/dashboard/user/{user}', [AdminUser::class, 'destroy'])->name('ad
 
 //add user
 Route::post('/dashboard/user/add', [AdminUser::class, 'add'])->name('admin.adduser');
+//View rating of admin
+//View rating of admin
+Route::get('/dashboard/rating', [AdminRatingController::class, 'index'])->name('admin-view-rating');
+
+//Delete rating
+Route::delete('/dashboard/rating/delete/{id}',[AdminRatingController::class,'destroy'])->name('admin-delete-rating');
