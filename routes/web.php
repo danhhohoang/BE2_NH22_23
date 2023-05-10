@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminRatingController;
+use App\Http\Controllers\OrdersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminProductController;
@@ -119,3 +120,9 @@ Route::get('/dashboard/rating', [AdminRatingController::class, 'index'])->name('
 
 //Delete rating
 Route::delete('/dashboard/rating/delete/{id}',[AdminRatingController::class,'destroy'])->name('admin-delete-rating');
+
+    //View all orders of Admin
+ Route::get('/dashboard/orders', [OrdersController::class, 'index'])->name('admin-view-orders');
+ 
+    //View details orders of admin
+    Route::get('/dashboard/orders/{id}', [OrdersController::class, 'find'])->name('admin-view-details-order');
