@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\AdminRatingController;
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\ProductDetailsController;
+use App\Http\Controllers\AdminProtype;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -92,7 +92,7 @@ Route::post('/dashboard/protype/add', [AdminProtype::class, 'add'])->name('admin
 
 //get from add protype
 Route::get('/dashboard/protype/addprotype', function () {
-    return view('admin-addprotype');
+    return view('Admin.admin-addprotype');
 })->name('protype.add');
 
 //get from edit protype
