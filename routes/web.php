@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminRatingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+ //View rating of admin
+ Route::get('/dashboard/rating', [AdminRatingController::class, 'index'])->name('admin-view-rating');
+
+ //Delete rating
+ Route::delete('/dashboard/rating/delete/{id}',[AdminRatingController::class,'destroy'])->name('admin-delete-rating');
