@@ -173,7 +173,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#"
+                                    <a href="{{ route($row['path_view'])}}"
                                         class="nav-link <?php if($nameURL == $row['selected_view']) echo "active" ?>">
 
                                         <i class="far fa-circle nav-icon"></i>
@@ -181,7 +181,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#"
+                                    <a href="{{ route($row['path_add'])}}"
                                         class="nav-link <?php if($nameURL == $row['selected_add']) echo "active" ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add {{$row['name']}}</p>
