@@ -52,6 +52,7 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}">Log out</a>
                 </li>
                 <!-- Navbar Search -->
                 <li class="nav-item">
@@ -172,7 +173,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route($row['path_view'])}}"
+                                    <a href="#"
                                         class="nav-link <?php if($nameURL == $row['selected_view']) echo "active" ?>">
 
                                         <i class="far fa-circle nav-icon"></i>
@@ -180,7 +181,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route($row['path_add'])}}"
+                                    <a href="#"
                                         class="nav-link <?php if($nameURL == $row['selected_add']) echo "active" ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add {{$row['name']}}</p>
@@ -190,7 +191,7 @@
                         </li>
                         @endforeach
                         <li class="nav-item">
-                            <a href="{{ route('admin-view-orders')}}" class="nav-link <?php if($nameURL == "orders" || $nameURL == "") echo "active" ?>">
+                            <a href="#" class="nav-link <?php if($nameURL == "orders" || $nameURL == "") echo "active" ?>">
                                 <i class="nav-icon fa fa-shopping-basket"></i>
                                 <p>
                                     Orders
@@ -206,7 +207,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.email-letter')}}" class="nav-link <?php if($nameURL == "email-newsletter" || $nameURL == "send-all-email") echo "active" ?>">
+                            <a href="#" class="nav-link <?php if($nameURL == "email-newsletter" || $nameURL == "send-all-email") echo "active" ?>">
                                 <i class="nav-icon fa fa-envelope"></i>
                                 <p>
                                     Email Newsletter

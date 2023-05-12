@@ -1,32 +1,43 @@
 <?php
 
+
 use App\Http\Controllers\AdminRatingController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\AdminProtype;
 use App\Http\Controllers\AdminUser;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
 Route::get('/', [ProductController::class, 'index'])->name('index');
 
-Route::get('/shop-details/{id}', [ProductController::class, 'product_detail']);
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-// ->middleware(['auth', 'verified', 'isAdmin'])
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
 //Get product by type_ID
-Route::get('/shop-grid/{typeid?}', [ProductController::class, 'drid']);
+
+Route::get('/shop-grid', [ProductController::class, 'drid']);
+// Log out
+Route::get('logout', function () {
+    auth()->logout();
+    Session()->flush();
+
+    return redirect('/');
+})->name('logout');
+require __DIR__.'/auth.php';
+
 // Search
 Route::get('search', [ProductController::class, 'getSearch'])->name('search');
 // Them san pham vao gio hang
@@ -126,3 +137,4 @@ Route::delete('/dashboard/rating/delete/{id}',[AdminRatingController::class,'des
  
     //View details orders of admin
     Route::get('/dashboard/orders/{id}', [OrdersController::class, 'find'])->name('admin-view-details-order');
+
