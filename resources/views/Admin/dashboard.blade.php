@@ -29,7 +29,7 @@
                     <div class="inner">
                         {{-- <h3>{{count($newsOrder)}}</h3> --}}
 
-                        <p>New Orders</p>
+                        <p>New Orderss</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>

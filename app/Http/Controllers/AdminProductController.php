@@ -77,7 +77,7 @@ class AdminProductController extends Controller
     {
         $protype = Protype::all();
         $product=Product::where('id',$id)->get();
-        return view('admin-editProduct',[
+        return view('Admin.admin-editProduct',[
             'product' => $product,
             'allprotype' => $protype,
         ]);
