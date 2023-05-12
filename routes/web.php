@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\AdminRatingController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminProductController;
