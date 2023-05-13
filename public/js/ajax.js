@@ -1,3 +1,4 @@
+
    // Them san pham vao gio hang
    function AddCart(id) {
        $.ajax({
@@ -52,3 +53,4 @@
        });
 
    }
+
