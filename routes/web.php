@@ -37,6 +37,8 @@ Route::get('logout', function () {
     return redirect('/');
 })->name('logout');
 require __DIR__.'/auth.php';
+//Get Detail product
+Route::get('/shop-details/{id}', [ProductDetailsController::class, 'product_detail'])->name('shop.details');
 
 // Search
 Route::get('search', [ProductController::class, 'getSearch'])->name('search');
