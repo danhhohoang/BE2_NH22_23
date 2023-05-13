@@ -181,13 +181,34 @@
                                 </ul>
                             </nav>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3" id="change-item-cart">
                             <div class="header__cart">
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                                @if (Auth::guest())
+                                <li><a onclick="alert('To view transaction history, please login to your account')"
+                                        href="{{ url('/login') }}"><i class="fa fa-history"></i>
+                                </li>
+                            @else
+                                <li><a href="{{ route('transactionHistory') }}"><i class="fa fa-history"></i></a>
+                                </li>
+                            @endif
+
+                            <li><a href="{{ route('shoppingCart') }}"><i class="fa fa-shopping-bag"></i>
+                                    @if (Session::has('cart'))
+                                        <span>{{ Session::get('cart')->totalQty }}</span>
+                                    @else
+                                        <span>0</span>
+                                    @endif
+                                </a>
+                            </li>
                                 </ul>
-                                <div class="header__cart__price">item: <span>$150.00</span></div>
+                                @if (Session::has('cart'))
+                            <div class="header__cart__price">item:
+                                <span>${{ Session::get('cart')->totalPrice }}</span>
+                            </div>
+                        @else
+                            <div class="header__cart__price">item: <span>$0</span></div>
+                        @endif
                             </div>
                         </div>
                     </div>
@@ -343,9 +364,33 @@
                             <script src="{{ asset('js/mixitup.min.js') }}"></script>
                             <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
                             <script src="{{ asset('js/main.js') }}"></script>
+                            <script src="{{ asset('js/ajax.js') }}"></script>
+                            <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+                            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+                            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+                            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+                            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+                            @if (Session::has('alert-success'))
+                            <script>
+                            swal("Payment successful !", "{!! Session('alert-success') !!}", "success", {
+                            button: "Continue Shopping"
+                            });
+                            </script>
+                            @endif
+                            @if(Session::has('receiveEmailSuccess'))
+                            <script>
+                            swal("Thank you for subscribing !", "{!! Session::get('receiveEmailSuccess') !!}", "success", {
+                            button: "OK",
+                            })
+                            </script>
+                            @endif
 
-
-
-        </body>
-
-        </html>
+                            @if(Session::has('receiveEmailError'))
+                            <script>
+                            swal("Your email is already exits !", "{!! Session::get('receiveEmailError') !!}", "error", {
+                                button: "OK",
+                            })
+                            </script>
+                                @endif
+                        </body>
+                        </html>

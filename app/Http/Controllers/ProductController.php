@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\Protype;
+use App\Cart;
+use Illuminate\Support\Facades\Session;
 class ProductController extends Controller
 {
     public function index(){
@@ -72,6 +74,53 @@ class ProductController extends Controller
             ]
         );
     }
+    public function getAddToCart(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+        $request->session()->put('cart', $cart);
 
+        return view('User.cart');
+    }
+    public function getCart()
+    {
+        $protypes = Protype::all();
+        if (!Session::has('cart')) {
+            return view('User.shopping-cart', [
+                'getProtypes' => $protypes,
+            ]);
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        return view('User.shopping-cart', [
+            'getProtypes' => $protypes,
+            'products' => $cart->items,
+            'totalPrice' => $cart->totalPrice,
+        ]);
+    }
+    public function deleteItemCart(Request $request, $id)
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $newCart = new Cart($oldCart);
+        $newCart->deleteItem($id);
+
+        if (Count($newCart->items) > 0) {
+            $request->session()->put('cart', $newCart);
+        } else {
+            $request->session()->forget('cart');
+        }
+        return view('User.deleteCart');
+    }
+    public function saveAllItemCart(Request $request)
+    {
+        foreach ($request->data as $item) {
+            $oldCart = Session('cart') ?  Session('cart') : null; // cart current
+            $newCart = new Cart($oldCart);
+            $newCart->updateAllCart($item['key'], $item['value']);
+            $request->Session()->put('cart', $newCart);
+        }
+    }
    
 }
