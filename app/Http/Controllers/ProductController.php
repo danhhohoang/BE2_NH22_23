@@ -39,6 +39,7 @@ class ProductController extends Controller
                 [
                     'getProtypes' => $protype,
                     'getProducts' => $products,
+                    
                     'getNewProduct' => $get10Products,
                     'getLatestProduct' => $latestProduts,
                     'getLowPriceProduct' => $lowPriceProducts,
@@ -46,6 +47,30 @@ class ProductController extends Controller
                 ]
             );
         
+    }
+    function product_detail($id)
+    {
+        //View product detail
+        $detail = Product::find($id);
+        $type = Product::select('protypes.name')->join('protypes', 'protypes.id', '=', 'products.type_id')
+            ->where('products.id', $id)
+            ->get()->toArray();
+        $products = Product::select('*', 'products.name AS product_name', 'products.id AS product_id')
+            ->leftJoin('protypes', 'protypes.id', '=', 'products.type_id')
+            ->where('featured', '=', '1')
+            ->orderBy('products.name', 'desc')
+            ->take(20)
+            ->get();
+
+
+        return view(
+            'User.shop-details',
+            [
+                'productDetail' => $detail,
+                'getType' => $type,
+                'getProducts' => $products,
+            ]
+        );
     }
 
    
