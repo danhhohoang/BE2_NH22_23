@@ -1,18 +1,6 @@
 @extends('User.master')
 @section('content')
-    <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
-        <div class="hero__text">
-            <span>FRUIT FRESH</span>
-            <h2>Vegetable <br />100% Organic</h2>
-            <p>Free Pickup and Delivery Available</p>
-            <a href="#" class="primary-btn">SHOP NOW</a>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </section>
-    <!-- Hero Section End -->
+
     <!-- Categories Section Begin -->
     <section class="categories">
         <div class="container">
@@ -60,10 +48,9 @@
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".oranges">Oranges</li>
-                            <li data-filter=".fresh-meat">Fresh Meat</li>
-                            <li data-filter=".vegetables">Vegetables</li>
-                            <li data-filter=".fastfood">Fastfood</li>
+                            @foreach ($getProtypes as $value)
+                                <li data-filter=".type-<?php echo $value['id']; ?>"><?php echo $value['name']; ?></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
