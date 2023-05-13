@@ -1,5 +1,9 @@
 @extends('User.master')
 @section('content')
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/shop-grid
     <!-- Categories Section Begin -->
     <section class="categories">
         <div class="container">

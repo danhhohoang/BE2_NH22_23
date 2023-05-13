@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+<<<<<<< HEAD
+=======
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+>>>>>>> origin/shop-grid
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +18,10 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
         //Fresh Meat number1
+=======
+>>>>>>> origin/shop-grid
         DB::table('products')->insert([
             'name' => 'USDA Choice Beef Rib Eye Steak Bone In, 2 pack, 1',
             'type_id' => 1,
