@@ -59,7 +59,7 @@
                                 <ul class="featured__item__pic__hover">
                                     <li><a onclick="AddCart({{ $value->product_id }})" href="javascript:"><i
                                                 class="fa fa-shopping-cart"></i></a></li>
-                                    {{-- {{ route('product.addToCart', ['id' => $value->product_id]) }} --}}
+                                    {{-- {{ route('product.addToCart ', ['id' => $value->product_id]) }} --}}
                                 </ul>
                             </div>
                             <div class="product__discount__item__text">
