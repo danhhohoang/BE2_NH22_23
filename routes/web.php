@@ -136,5 +136,5 @@ Route::delete('/dashboard/rating/delete/{id}',[AdminRatingController::class,'des
  Route::get('/dashboard/orders', [OrdersController::class, 'index'])->name('admin-view-orders');
  
     //View details orders of admin
-    Route::get('/dashboard/orders/{id}', [OrdersController::class, 'find'])->name('admin-view-details-order');
+ Route::get('/dashboard/orders/{id}', [OrdersController::class, 'find'])->name('admin-view-details-order');
 
